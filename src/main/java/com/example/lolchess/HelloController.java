@@ -6,4 +6,5 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polygon;
 
 public class HelloController {
+
 }

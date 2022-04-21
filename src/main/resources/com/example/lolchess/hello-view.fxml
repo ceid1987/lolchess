@@ -10,6 +10,7 @@
     </padding>
    <children>
       <AnchorPane fx:id="tileMap" prefHeight="600.0" prefWidth="800.0" />
+
        
    </children>
 </VBox>
