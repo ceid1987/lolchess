@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
         Scene content = new Scene(tileMap, WINDOW_WIDTH, WINDOW_HEIGHT);
         primaryStage.setScene(content);
 
-        int rowCount = 4; // how many rows of tiles should be created
+        int rowCount = 8; // how many rows of tiles should be created
         int tilesPerRow = 6; // the amount of tiles that are contained in each row
         int xStartOffset = 40; // offsets the entire field to the right
         int yStartOffset = 40; // offsets the entire fiels downwards
