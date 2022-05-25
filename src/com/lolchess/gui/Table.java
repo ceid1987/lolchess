@@ -1,11 +1,16 @@
 package com.lolchess.gui;
 
+import com.lolchess.engine.board.Board;
 import com.lolchess.engine.board.BoardUtils;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +23,8 @@ public class Table {
 
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10,10);
 
-    private Color lightTileColor = Color.decode("#FFFACD");
-    private Color darkTileColor = Color.decode("#593E1A");
+    private Color lightTileColor = Color.decode("#000000");
+    private Color darkTileColor = Color.decode("#FFFFFF");
     public Table(){
         this.gameFrame = new JFrame("lolchess");
         this.gameFrame.setLayout(new BorderLayout());
@@ -41,7 +46,7 @@ public class Table {
 
     private JMenu createFileMenu() {
         final JMenu fileMenu = new JMenu("File");
-        final JMenuItem openPGN = new JMenuItem("Load PGN File");
+        final JMenuItem openPGN = new JMenuItem("Charger fichier PGN");
         openPGN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +54,16 @@ public class Table {
             }
         });
         fileMenu.add(openPGN);
+
+        final JMenuItem exitMenuItem = new JMenuItem("Quitter");
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                System.exit(0);
+            }
+        });
+        fileMenu.add(exitMenuItem);
         return fileMenu;
     }
 
@@ -80,6 +95,15 @@ public class Table {
             validate();
         }
 
+        private void assignTilePieceIcon(final Board board) throws IOException {
+            this.removeAll();
+            if(board.getTile(this.tileId).isTileOccupied()) {
+                String pieceIconPath = "";
+                final BufferedImage image = ImageIO.read(new File(pieceIconPath + board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0,1) +
+                        board.getTile(this.tileId).getPiece().toString()+".gif"));
+                add(new JLabel(new ImageIcon(image)));
+            }
+        }
         private void assignTileColor() {
             if(BoardUtils.FIRST_ROW[this.tileId] ||
                 BoardUtils.THIRD_ROW[this.tileId] ||
@@ -102,9 +126,6 @@ public class Table {
             }
         }
 
-    }
-
-    private void assignTileColor() {
     }
 
 }
