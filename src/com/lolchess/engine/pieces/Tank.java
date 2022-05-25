@@ -18,7 +18,7 @@ public class Tank extends Piece{
     private final static int[] CANDIDATE_MOVE_COORDINATE = {7, 8, 9, 16};
 
     public Tank(final int piecePosition, final Alliance pieceAlliance) {
-        super(PieceType.TANK, piecePosition, pieceAlliance);
+        super(PieceType.TANK, piecePosition, pieceAlliance, 150);
     }
 
     @Override

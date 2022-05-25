@@ -17,7 +17,7 @@ public class Enchanteur extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -7, 7, 9};
     public Enchanteur(int piecePosition, Alliance pieceAlliance) {
-        super(PieceType.ENCHANTEUR,piecePosition, pieceAlliance);
+        super(PieceType.ENCHANTEUR,piecePosition, pieceAlliance, 60);
     }
 
     @Override

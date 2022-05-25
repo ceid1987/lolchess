@@ -10,18 +10,20 @@ public abstract class Piece {
     protected final PieceType pieceType;
     protected final int piecePosition;      //position
     protected final Alliance pieceAlliance; // team
-    private final int privateHashCode;
     protected int vie;
+    private final int privateHashCode;
+
 
     protected final boolean isFirstMove;
 
-    Piece (final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
+    Piece (final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final int vie) {
         this.pieceType = pieceType;
         this.pieceAlliance = pieceAlliance;
         this.piecePosition = piecePosition;
         //tofix
         this.isFirstMove = false;
         this.privateHashCode = computeHashCode();
+        this.vie = vie;
     }
 
     private int computeHashCode(){

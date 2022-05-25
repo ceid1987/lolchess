@@ -18,7 +18,7 @@ public class Mage extends Piece{
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
     public Mage(int piecePosition, Alliance pieceAlliance) {
-        super(PieceType.MAGE,piecePosition, pieceAlliance);
+        super(PieceType.MAGE,piecePosition, pieceAlliance, 50);
     }
 
 
