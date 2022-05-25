@@ -2,23 +2,37 @@ package com.lolchess.gui;
 
 import com.lolchess.engine.board.Board;
 import com.lolchess.engine.board.BoardUtils;
+import com.lolchess.engine.board.Move;
+import com.lolchess.engine.board.Tile;
+import com.lolchess.engine.pieces.Piece;
+import com.lolchess.engine.player.MoveTransition;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.swing.SwingUtilities.isLeftMouseButton;
+import static javax.swing.SwingUtilities.isRightMouseButton;
+
 public class Table {
 
     private final JFrame gameFrame;
     private final BoardPanel boardPanel;
     private final Board chessBoard;
+
+    private Tile sourceTile;
+    private Tile destinationTile;
+    private Piece humanMovedPiece;
+
     private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600,800);
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
 
@@ -95,6 +109,49 @@ public class Table {
             assignTileColor();
             try {
                 assignTilePieceIcon(chessBoard);
+                addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+
+                        if(isRightMouseButton(e)) {
+
+                            sourceTile = null;
+                            destinationTile = null;
+                            humanMovedPiece = null;
+                        } else if(isLeftMouseButton(e)) {
+                            if(sourceTile==null) {
+                                sourceTile = chessBoard.getTile(tileId);
+                                humanMovedPiece = sourceTile.getPiece();
+                                if (humanMovedPiece == null) {
+                                    sourceTile = null;
+                                }
+                            } else {
+                                destinationTile = chessBoard.getTile(tileId);
+                                final Move move = null;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
