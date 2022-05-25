@@ -11,6 +11,7 @@ public abstract class Piece {
     protected final int piecePosition;      //position
     protected final Alliance pieceAlliance; // team
     private final int privateHashCode;
+    protected int vie;
 
     protected final boolean isFirstMove;
 
