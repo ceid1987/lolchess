@@ -36,6 +36,7 @@ public class Table {
     private Tile destinationTile;
     private Piece humanMovedPiece;
     private BoardDirection boardDirection;
+    private boolean highlightLegalMoves;
 
     private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600,800);
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
@@ -55,6 +56,7 @@ public class Table {
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.setVisible(true);
         this.boardDirection = BoardDirection.NORMAL;
+        this.highlightLegalMoves = false;
     }
 
     private JMenuBar createTableMenuBar() {
@@ -103,6 +105,15 @@ public class Table {
             }
         });
         preferencesMenu.add(flipBoardMenuItem);
+        preferencesMenu.addSeparator();
+        final JCheckBoxMenuItem legalMoveHighlighterCheckbox = new JCheckBoxMenuItem("Montrer les chemins possibles", false);
+        legalMoveHighlighterCheckbox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                highlightLegalMoves = legalMoveHighlighterCheckbox.isSelected();
+            }
+        });
+        preferencesMenu.add(legalMoveHighlighterCheckbox);
         return preferencesMenu;
     }
 
@@ -259,7 +270,7 @@ public class Table {
         }
 
         private void highlightLegals(final Board board) {
-            if(true) {
+            if(highlightLegalMoves) {
 
                 for(final Move move : pieceLegalMoves(board)) {
                     if(move.getDestinationCoordinate()==this.tileId) {
