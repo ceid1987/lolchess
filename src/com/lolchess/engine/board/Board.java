@@ -1,5 +1,6 @@
 package com.lolchess.engine.board;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import com.lolchess.engine.Alliance;
 import com.lolchess.engine.pieces.*;
 import com.lolchess.engine.player.P1Player;
@@ -144,6 +145,11 @@ public class Board {
         builder.setMoveMaker(Alliance.P2);
         //build the board
         return builder.build();
+    }
+
+    public Iterable<Move> AllLegalMoves() {
+        return Iterables.unmodifiableIterable(Iterables.concat(this.p1Player.getLegalMoves(), this.p2Player.getLegalMoves()));
+
     }
 
     public static class Builder{

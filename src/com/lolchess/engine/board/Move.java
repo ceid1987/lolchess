@@ -7,14 +7,20 @@ public abstract class Move {
     final Board board;
     final Piece movedPiece;
     final int destinationCoordinate;
+    private static final Move NULL_MOVE = new NullMove();
 
-    Move(final Board board,
+    private Move(final Board board,
          final Piece movedPiece,
          final int destinationCoordinate) {
         this.board = board;
         this.movedPiece = movedPiece;
         this.destinationCoordinate = destinationCoordinate;
     }
+
+    public int getCurrentCoordinate(){
+        return this.getMovedPiece().getPiecePosition();
+    }
+
 
     public int getDestinationCoordinate() {
         return this.destinationCoordinate;
@@ -52,7 +58,7 @@ public abstract class Move {
         }
     }
 
-    public static final class AttackMove extends Move {
+    public static class AttackMove extends Move {
 
         final Piece attackedPiece;
 
@@ -69,38 +75,68 @@ public abstract class Move {
         }
     }
 
-    public static final class TankMove extends Move {
+    public static abstract class TankMove extends Move {
         public TankMove(final Board board,
                         final Piece movedPiece,
                         final int destinationCoordinate){
-            super(board, movedPiece, destinationCoordinate);
-        }
-    }
+                        super(board, movedPiece, destinationCoordinate);
+           }
+      }
 
-    public static class TankAttackMove extends AttackMove {
-        public TankAttackMove(final Board board,
-                              final Piece movedPiece,
-                              final int destinationCoordinate,
-                              final Piece attackedPiece){
-            super(board, movedPiece, destinationCoordinate, attackedPiece);
-        }
-    }
-    public static class TankEnPassantAttack extends TankAttackMove {
+        public static class TankAttackMove extends AttackMove {
+         public TankAttackMove(final Board board,
+                                final Piece movedPiece,
+                                final int destinationCoordinate,
+                               final Piece attackedPiece){
+             super(board, movedPiece, destinationCoordinate, attackedPiece);
+         }
+      }
+      public static class TankEnPassantAttack extends TankAttackMove {
 
-        public TEnPassantAttack(final Board board,
-                                final Piece pieceMoved,
+        public TankEnPassantAttack(final Board board,
+                               final Piece pieceMoved,
                                 final int destinationCoordinate,
                                 final Piece pieceAttacked) {
-            super(board, pieceMoved, destinationCoordinate, pieceAttacked);
-        }
+           super(board, pieceMoved, destinationCoordinate, pieceAttacked);
+          }
     }
 
-    public static final class TankJump extends Move{
-        public TankJump(final Board board,
-                        final Piece movedPiece,
-                        final int destinationCoordinate){
-            super(board, movedPiece, destinationCoordinate);
-        }
-    }
+        public static abstract class TankJump extends Move{
+           public TankJump(final Board board,
+                           final Piece movedPiece,
+                           final int destinationCoordinate){
+             super(board, movedPiece, destinationCoordinate);
+           }
+       }
 
+        public static final class NullMove extends Move {
+            public NullMove() {
+                super(null, null, -1);
+            }
+            @Override
+            public Board execute(){
+            throw new RuntimeException("cannot execute the null move!");
+            }
+        }
+
+
+        public class MoveFactory {
+            private MoveFactory(){
+                throw new RuntimeException("not instantiable!");
+            }
+            public static Move createMove(final Board board,
+                                          final int currentCoordinate,
+                                          final int destinationCoordinate){
+                for(final Move move : board.AllLegalMoves()){
+                    if(move.getCurrentCoordinate() == currentCoordinate && move.getDestinationCoordinate()
+                            == destinationCoordinate){
+                        return move;
+                    }
+
+                }
+                return NULL_MOVE;
+
+        }
+
+}
 }
