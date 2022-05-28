@@ -7,6 +7,11 @@ import com.lolchess.engine.pieces.Piece;
 
 public abstract class Move {
 
+    /**
+     * definition des mouvements
+     */
+
+
     protected final Board board;
     protected final int destinationCoordinate;
     protected final Piece movedPiece;

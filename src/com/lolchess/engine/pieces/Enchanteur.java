@@ -14,6 +14,10 @@ import static com.lolchess.engine.board.Move.*;
 
 public final class Enchanteur extends Piece {
 
+    /**
+     * Creation enchanteur
+     */
+
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-9, -7, 7, 9};
 
     public Enchanteur(final Alliance alliance,

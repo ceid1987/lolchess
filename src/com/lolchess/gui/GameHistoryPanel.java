@@ -16,6 +16,10 @@ import com.lolchess.gui.Table.MoveLog;
 
 class GameHistoryPanel extends JPanel {
 
+    /**
+     * Panel historique des mouvements
+     */
+
     private final DataModel model;
     private final JScrollPane scrollPane;
     private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100, 40);

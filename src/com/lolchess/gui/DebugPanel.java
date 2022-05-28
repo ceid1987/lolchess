@@ -9,6 +9,10 @@ import javax.swing.JTextArea;
 
 class DebugPanel extends JPanel implements Observer {
 
+    /**
+     * Interface debug
+     */
+
     private static final Dimension CHAT_PANEL_DIMENSION = new Dimension(600, 150);
     private final JTextArea jTextArea;
 

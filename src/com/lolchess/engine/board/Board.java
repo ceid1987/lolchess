@@ -13,6 +13,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Board {
+
+    /**
+     * Creation du plateau et mise en place des pieces
+     * + definition des cotés
+     */
     private final Map<Integer, Piece> boardConfig;
     private final Collection<Piece> p1Pieces;
     private final Collection<Piece> p2Pieces;

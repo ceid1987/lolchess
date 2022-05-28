@@ -3,6 +3,10 @@ package com.lolchess.engine.board;
 import static com.lolchess.engine.board.Move.*;
 
 public enum MoveUtils {
+
+    /**
+     * Constante et boolean à utiliser apres
+     */
     INSTANCE;
 
     public static int Score(final Move move) {

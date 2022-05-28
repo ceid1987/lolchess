@@ -13,6 +13,13 @@ import java.util.List;
 
 public final class P1Player extends Player {
 
+    /**
+     * Joueur 1 (En haut)
+     * @param board
+     * @param p2StandardLegals
+     * @param p1StandardLegals
+     */
+
     public P1Player(final Board board,
                     final Collection<Move> p2StandardLegals,
                     final Collection<Move> p1StandardLegals) {

@@ -14,6 +14,10 @@ import java.util.List;
 
 public final class Mage extends Piece {
 
+    /**
+     * Creation mage
+     */
+
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -8, -1, 1, 8 };
 
     public Mage(final Alliance alliance, final int piecePosition) {

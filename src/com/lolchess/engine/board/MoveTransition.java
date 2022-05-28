@@ -3,6 +3,10 @@ package com.lolchess.engine.board;
 import com.lolchess.engine.board.Move.MoveStatus;
 
 public final class MoveTransition {
+
+    /**
+     * Transition a un nouveau plateau apres un mouvement
+     */
     private final Board fromBoard;
     private final Board toBoard;
     private final Move transitionMove;

@@ -14,6 +14,10 @@ import static java.util.stream.Collectors.collectingAndThen;
 
 public abstract class Player {
 
+    /**
+     * Definition classe joueur
+     */
+
     protected final Board board;
     protected final Collection<Move> legalMoves;
 

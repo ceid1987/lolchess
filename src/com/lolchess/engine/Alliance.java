@@ -7,6 +7,10 @@ import com.lolchess.engine.player.P2Player;
 
 public enum Alliance {
 
+    /**
+     * Creation des alliances (equipe rouge ou bleue)
+     */
+
     P2() {
 
         @Override

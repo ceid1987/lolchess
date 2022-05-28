@@ -7,6 +7,10 @@ import com.lolchess.engine.board.Move;
 import java.util.Collection;
 
 public abstract class Piece {
+
+    /**
+     * Creation classe Piece et creation hashcode
+     */
     final PieceType pieceType;
     final int piecePosition;      //position
     final Alliance pieceAlliance; // team

@@ -6,6 +6,10 @@ import com.google.common.collect.Table;
 
 enum PieceUtils {
 
+    /**
+     * Outils pour les pieces
+     */
+
     INSTANCE;
 
     private final Table<Alliance, Integer, Tireur> ALL_POSSIBLE_TIREUR = PieceUtils.createAllPossibleMovedTireur();

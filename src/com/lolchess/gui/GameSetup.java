@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 
 class GameSetup extends JDialog {
 
+    /**
+     * Fenetre Setup
+     */
+
     private PlayerType p2PlayerType;
     private PlayerType p1PlayerType;
     private JSpinner searchDepthSpinner;

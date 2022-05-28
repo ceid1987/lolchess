@@ -27,6 +27,10 @@ import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 import static javax.swing.SwingUtilities.*;
 public final class Table extends Observable {
 
+    /**
+     * Interface plateau
+     */
+
     private final JFrame gameFrame;
     private final GameHistoryPanel gameHistoryPanel;
     private final TakenPiecesPanel takenPiecesPanel;

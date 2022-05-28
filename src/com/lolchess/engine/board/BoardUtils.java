@@ -5,6 +5,10 @@ import com.lolchess.engine.board.Move.MoveFactory;
 
 public enum BoardUtils {
 
+    /**
+     * Differents outils et differentes constantes qu'on utilisera
+     */
+
     INSTANCE;
     public static final List<Boolean> FIRST_COLUMN = initColumn(0);
 

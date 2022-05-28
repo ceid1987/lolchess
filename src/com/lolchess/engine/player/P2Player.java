@@ -15,6 +15,13 @@ import static com.lolchess.engine.pieces.Piece.PieceType.MAGE;
 
 public final class P2Player extends Player {
 
+    /**
+     * Joueur 2 (En bas)
+     * @param board
+     * @param p1StandardLegals
+     * @param p2StandardLegals
+     */
+
     public P2Player(final Board board,
                        final Collection<Move> p1StandardLegals,
                        final Collection<Move> p2StandardLegals) {

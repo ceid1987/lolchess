@@ -25,6 +25,9 @@ import com.google.common.primitives.Ints;
 
 class TakenPiecesPanel extends JPanel {
 
+    /**
+     * Panel des pieces éliminées
+     */
     private final JPanel northPanel;
     private final JPanel southPanel;
 

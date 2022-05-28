@@ -13,6 +13,10 @@ import static com.lolchess.engine.board.Move.*;
 
 public final class Combattant extends Piece {
 
+    /**
+     * Creation combattant
+     */
+
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -17, -15, -10, -6, 6, 10, 15, 17 };
 
     public Combattant(final Alliance alliance, final int piecePosition) {

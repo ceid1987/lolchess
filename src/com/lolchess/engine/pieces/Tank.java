@@ -14,6 +14,10 @@ import java.util.List;
 public final class Tank
         extends Piece {
 
+    /**
+     * Tank et methodes uniques
+     */
+
     private final static int[] CANDIDATE_MOVE_COORDINATES = {8, 16, 7, 9};
 
     public Tank(final Alliance allegiance,
