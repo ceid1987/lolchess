@@ -45,8 +45,8 @@ public final class Table extends Observable {
     private Color lightTileColor = Color.decode("#FFFFFF");
     private Color darkTileColor = Color.decode("#000000");
 
-    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
-    private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
+    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 1000);
+    private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(300, 800);
     private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
 
     private static final Table INSTANCE = new Table();
@@ -316,13 +316,6 @@ public final class Table extends Observable {
 
         preferencesMenu.add(cbLegalMoveHighlighter);
 
-        final JCheckBoxMenuItem cbUseBookMoves = new JCheckBoxMenuItem(
-                "Use Book Moves", false);
-
-        cbUseBookMoves.addActionListener(e -> useBook = cbUseBookMoves.isSelected());
-
-        preferencesMenu.add(cbUseBookMoves);
-
         return preferencesMenu;
 
     }
@@ -335,9 +328,6 @@ public final class Table extends Observable {
         this.chessBoard = board;
     }
 
-    private void updateComputerMove(final Move move) {
-        this.computerMove = move;
-    }
 
     private void undoAllMoves() {
         for(int i = Table.get().getMoveLog().size() - 1; i >= 0; i--) {
