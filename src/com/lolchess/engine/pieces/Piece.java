@@ -7,32 +7,44 @@ import com.lolchess.engine.board.Move;
 import java.util.Collection;
 
 public abstract class Piece {
-    protected final PieceType pieceType;
-    protected final int piecePosition;      //position
-    protected final Alliance pieceAlliance; // team
-    protected int vie;
+    final PieceType pieceType;
+    final int piecePosition;      //position
+    final Alliance pieceAlliance; // team
     private final int privateHashCode;
 
 
-    protected final boolean isFirstMove;
+    private final boolean isFirstMove;
 
-    Piece (final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final int vie) {
-        this.pieceType = pieceType;
-        this.pieceAlliance = pieceAlliance;
+    Piece(final PieceType type, final Alliance alliance, final int piecePosition, final boolean isFirstMove) {
+        this.pieceType = type;
+        this.pieceAlliance = alliance;
         this.piecePosition = piecePosition;
-        //tofix
-        this.isFirstMove = false;
+        this.isFirstMove = isFirstMove;
         this.privateHashCode = computeHashCode();
-        this.vie = vie;
     }
 
-    private int computeHashCode(){
-        int result = pieceType.hashCode();
-        result = 31 * result + pieceAlliance.hashCode();
-        result = 31 * result + piecePosition;
-        result = 31 * result + (isFirstMove ? 1 : 0);
-        return result;
+    public Alliance getPieceAlliance() {
+        return this.pieceAlliance;
     }
+
+    public PieceType getPieceType() {
+        return this.pieceType;
+    }
+
+    public int getPiecePosition() {
+        return this.piecePosition;
+    }
+
+    public boolean isFirstMove() {
+        return this.isFirstMove;
+    }
+
+    public int getPieceValue() {
+        return this.pieceType.getPieceValue();
+    }
+
+    public abstract Piece movePiece(Move move);
+    public abstract Collection<Move> calculateLegalMoves(final Board board);
 
     @Override
     public boolean equals(final Object other) {
@@ -52,46 +64,40 @@ public abstract class Piece {
         return this.privateHashCode;
     }
 
-
-    public int getPiecePosition(){
-        return this.piecePosition;
+    private int computeHashCode() {
+        int result = this.pieceType.hashCode();
+        result = 31 * result + this.pieceAlliance.hashCode();
+        result = 31 * result + this.piecePosition;
+        result = 31 * result + (this.isFirstMove ? 1 : 0);
+        return result;
     }
-
-
-    public Alliance getPieceAlliance() {
-        return this.pieceAlliance;
-    }
-
-    public boolean isFirstMove() {
-        return this.isFirstMove;
-    }
-
-    public PieceType getPieceType() { return this.pieceType; }
-
-
-    public abstract Collection<Move> calculateLegalMoves(final Board board);
-
-    public abstract Piece movePiece(Move move);
-
 
     public enum PieceType {
-        TIREUR("TI"),
-        TANK("TA"),
-        ENCHANTEUR("EN"),
-        COMBATTANT("CB"),
-        MAGE("MG");
+
+        TANK(100, "TA"),
+        COMBATTANT(300, "CB"),
+        ENCHANTEUR(330, "EN"),
+        MAGE(500, "MG"),
+        TIREUR(900, "TI");
+
+        private final int value;
         private final String pieceName;
 
-
-        PieceType(final String pieceName) {
-            this.pieceName = pieceName;
+        public int getPieceValue() {
+            return this.value;
         }
+
         @Override
         public String toString() {
             return this.pieceName;
         }
+
+        PieceType(final int val,
+                  final String pieceName) {
+            this.value = val;
+            this.pieceName = pieceName;
+        }
+
     }
+
 }
-
-
-
